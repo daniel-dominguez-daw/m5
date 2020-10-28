@@ -45,4 +45,15 @@ public class Lloguer {
         
         return quantitat;
     }
+    
+    public double bonificacions() {
+        double bonificacions = 1;
+
+        // afegeix bonificació per dos dies de lloguer de Luxe
+        if (getVehicle().getCategoria() == Vehicle.LUXE &&
+                getDies()>1 ) {
+            bonificacions ++;
+        }
+        return bonificacions;
+    }
 }
