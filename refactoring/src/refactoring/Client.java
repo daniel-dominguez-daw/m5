@@ -44,6 +44,41 @@ public class Client {
                 composaPeu();
     }
     
+    public String informeHTML() {
+        return composaCapsaleraHTML() +
+                composaDetallHTML() +
+                composaPeuHTML();
+    }
+    
+    private String composaCapsaleraHTML() {
+        return "<h1>Informe de lloguers</h1" +
+                "<p>Informe de lloguers del client <em>" + getNom() +
+                "</em> (<strong>" + getNif() + "</strong>)</p>";
+    }
+    
+    private String composaDetallHTML() {
+        String resultat = "<table>" + 
+                "<tr><td><strong>Marca</strong></td>" +
+                "<tr><td><strong>Model</strong></td>" +
+                "<tr><td><strong>Import</strong></td></tr>";
+                
+        for (Lloguer lloguer: lloguers) {
+            // composa els resultats d'aquest lloguer
+            resultat += "<tr><td>" +
+                lloguer.getVehicle().getMarca() + "</td><td>" +
+                " " +
+                lloguer.getVehicle().getModel()  + "</td><td>" +
+                (lloguer.quantitat() * 30) + "€"  + "</td><td></tr>";
+        }
+        
+        return resultat + "</table>";
+    }
+    
+    private String composaPeuHTML() {
+        return "<p>Import a pagar: <em>" + importeTotal() + "€</em></p>" +
+                "</em> (<strong>" + getNif() + "</strong>)</p>";
+    }
+    
     private String composaCapsalera() {
         String resultat = "Informe de lloguers del client " +
                 getNom() +
